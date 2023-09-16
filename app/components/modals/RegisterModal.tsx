@@ -7,6 +7,8 @@ import { useCallback, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 import useRegisterModal from "../hooks/useRegisterModal";
+import { data } from "autoprefixer";
+import { error } from "console";
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
@@ -23,6 +25,22 @@ const RegisterModal = () => {
       password: "",
     },
   });
+
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    setIsLoading(true);
+
+    axios
+      .post("api/register", data)
+      .then(() => {
+        registerModal.onClose();
+      })
+      .catch(() => {
+        console.log(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
   return <div></div>;
 };
