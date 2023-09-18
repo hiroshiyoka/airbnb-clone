@@ -9,6 +9,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import useRegisterModal from "../hooks/useRegisterModal";
 import { data } from "autoprefixer";
 import { error } from "console";
+import Modal from "./Modal";
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
@@ -42,7 +43,16 @@ const RegisterModal = () => {
       });
   };
 
-  return <div></div>;
+  return (
+    <Modal
+      disabled={isLoading}
+      isOpen={registerModal.isOpen}
+      title="register"
+      actionLabel="Continue"
+      onClose={registerModal.onClose}
+      onSubmit={handleSubmit(onSubmit)}
+    />
+  );
 };
 
 export default RegisterModal;
