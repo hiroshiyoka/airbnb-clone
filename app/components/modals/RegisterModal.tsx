@@ -10,6 +10,7 @@ import useRegisterModal from "../hooks/useRegisterModal";
 import { data } from "autoprefixer";
 import { error } from "console";
 import Modal from "./Modal";
+import Heading from "../Heading";
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
@@ -43,7 +44,11 @@ const RegisterModal = () => {
       });
   };
 
-  const bodyContent = <div className="flex flex-col gap-4"></div>;
+  const bodyContent = (
+    <div className="flex flex-col gap-4">
+      <Heading />
+    </div>
+  );
 
   return (
     <Modal
