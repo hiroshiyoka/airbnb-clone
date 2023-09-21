@@ -24,7 +24,7 @@ const Input: React.FC<InputProps> = ({
   register,
   errors,
 }) => {
-  return <div></div>;
+  return <div className="w-full relative"></div>;
 };
 
 export default Input;
