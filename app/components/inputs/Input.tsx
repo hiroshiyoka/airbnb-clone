@@ -32,6 +32,12 @@ const Input: React.FC<InputProps> = ({
           className="text-neutral-700 absolute top-5 left-2"
         />
       )}
+      <input
+        id={id}
+        disabled={disabled}
+        {...register(id, { required })}
+        placeholder=" "
+      />
     </div>
   );
 };
