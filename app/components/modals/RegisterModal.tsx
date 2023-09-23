@@ -37,7 +37,7 @@ const RegisterModal = () => {
         registerModal.onClose();
       })
       .catch(() => {
-        console.log(error);
+        console.log(errors);
       })
       .finally(() => {
         setIsLoading(false);
@@ -53,6 +53,7 @@ const RegisterModal = () => {
         disabled={isLoading}
         register={register}
         errors={errors}
+        required
       />
     </div>
   );
