@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import useRentModal from "@/app/hooks/useRentModal";
 import Modal from "./Modal";
 
@@ -25,6 +25,22 @@ const RentModal = () => {
   const onNext = () => {
     setStep((value) => value + 1);
   };
+
+  const actionLabel = useMemo(() => {
+    if (step === STEPS.PRICE) {
+      return "Create";
+    }
+
+    return "Next";
+  }, [step]);
+
+  const secondaryActionLabel = useMemo(() => {
+    if (step === STEPS.CATEGORY) {
+      return undefined;
+    }
+
+    return "Back";
+  }, [step]);
 
   return (
     <Modal
