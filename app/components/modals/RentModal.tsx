@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import useRentModal from "@/app/hooks/useRentModal";
 import Modal from "./Modal";
+import Heading from "../Heading";
 
 enum STEPS {
   CATEGORY = 0,
@@ -42,6 +43,15 @@ const RentModal = () => {
     return "Back";
   }, [step]);
 
+  let bodyContent = (
+    <div className="flex flex-col gap-8">
+      <Heading
+        title="Which of these best describes your place?"
+        subtitle="Pick a category"
+      />
+    </div>
+  );
+
   return (
     <Modal
       isOpen={rentModal.isOpen}
@@ -51,6 +61,7 @@ const RentModal = () => {
       secondaryActionLabel={secondaryActionLabel}
       secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
       title="Airbnb your home!"
+      body={bodyContent}
     />
   );
 };
