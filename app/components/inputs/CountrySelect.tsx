@@ -1,5 +1,6 @@
 "use client";
 
+import useCountries from "@/app/hooks/useCountries";
 import Select from "react-select";
 
 export type CountrySelectValue = {
@@ -16,6 +17,8 @@ interface CountrySelectProps {
 }
 
 const CountrySelect: React.FC<CountrySelectProps> = ({ value, onChange }) => {
+  const { getAll } = useCountries();
+
   return <div></div>;
 };
 
