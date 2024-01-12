@@ -17,7 +17,7 @@ L.Icon.Default.mergeOptions({
 });
 
 const Map = () => {
-  return <div></div>;
+  return <div>This is Map</div>;
 };
 
 export default Map;
