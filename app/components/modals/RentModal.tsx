@@ -110,7 +110,7 @@ const RentModal = () => {
     </div>
   );
 
-  if (step === STEPS.CATEGORY) {
+  if (step === STEPS.LOCATION) {
     bodyContent = (
       <div className="flex flex-col gap-8">
         <Heading
