@@ -14,7 +14,7 @@ interface ImageUploadProps {
   value: string;
 }
 
-const ImageUpload = () => {
+const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value }) => {
   return <div></div>;
 };
 
