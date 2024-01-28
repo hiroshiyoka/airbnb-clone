@@ -215,6 +215,16 @@ const RentModal = () => {
           title="Now, sell your price"
           subtitle="How much do you charge per night?"
         />
+        <Input
+          id="price"
+          label="Price"
+          formatPrice
+          type="number"
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
       </div>
     );
   }
