@@ -6,9 +6,8 @@ import EmptyState from "./components/EmptyState";
 
 export default async function Home() {
   const listings = await getListings();
-  const isEmpty = true;
 
-  if (isEmpty) {
+  if (listings.length === 0) {
     return (
       <ClientOnly>
         <EmptyState showReset />
