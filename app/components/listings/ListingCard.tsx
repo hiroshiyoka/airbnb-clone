@@ -1,5 +1,8 @@
+"use client";
+
 import { SafeUser } from "@/app/types";
 import { Listing, Reservation } from "@prisma/client";
+import { useRouter } from "next/navigation";
 
 interface ListingCardProps {
   data: Listing;
@@ -20,6 +23,8 @@ const ListingCard: React.FC<ListingCardProps> = ({
   actionId,
   currentUser,
 }) => {
+  const router = useRouter();
+
   return <div>Listing Card</div>;
 };
 
