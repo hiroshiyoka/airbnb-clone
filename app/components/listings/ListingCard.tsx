@@ -1,5 +1,6 @@
 "use client";
 
+import useCountries from "@/app/hooks/useCountries";
 import { SafeUser } from "@/app/types";
 import { Listing, Reservation } from "@prisma/client";
 import { useRouter } from "next/navigation";
@@ -24,6 +25,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
   currentUser,
 }) => {
   const router = useRouter();
+  const { getByValue } = useCountries();
 
   return <div>Listing Card</div>;
 };
