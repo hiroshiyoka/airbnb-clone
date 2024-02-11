@@ -11,7 +11,9 @@ const HeartButton: React.FC<HeartButtonProps> = ({
   listingId,
   currentUser,
 }) => {
-  return <div></div>;
+  return (
+    <div className="relative hover:opacity-80 transition cursor-pointer"></div>
+  );
 };
 
 export default HeartButton;
