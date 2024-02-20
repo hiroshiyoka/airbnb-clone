@@ -9,7 +9,10 @@ interface ListingClientProps {
   currentUser: SafeUser | null;
 }
 
-const ListingClient = () => {
+const ListingClient: React.FC<ListingClientProps> = ({
+  listing,
+  currentUser,
+}) => {
   return <div>Listing Client</div>;
 };
 
