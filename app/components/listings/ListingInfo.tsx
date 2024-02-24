@@ -1,5 +1,6 @@
 "use client";
 
+import useCountries from "@/app/hooks/useCountries";
 import { SafeUser } from "@/app/types";
 import { IconType } from "react-icons";
 
@@ -28,6 +29,10 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
   category,
   locationValue,
 }) => {
+  const { getByValue } = useCountries();
+
+  const coordinate = getByValue(locationValue)?.latlng;
+
   return <div>Listing Info</div>;
 };
 
