@@ -9,7 +9,7 @@ import { SafeListing, SafeUser } from "@/app/types";
 import { Reservation } from "@prisma/client";
 import { eachDayOfInterval } from "date-fns";
 import { useRouter } from "next/navigation";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 const initialDateRange = {
   startDate: new Date(),
@@ -47,6 +47,10 @@ const ListingClient: React.FC<ListingClientProps> = ({
 
     return dates;
   }, [reservation]);
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [totalPrice, setTotalPrice] = useState(listing.price);
+  const [dateRange, setDateRange] = useState(initialDateRange);
 
   const category = useMemo(() => {
     return categories.find((item) => item.label === listing.category);
