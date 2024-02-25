@@ -7,6 +7,7 @@ import { categories } from "@/app/components/navbar/Categories";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import { SafeListing, SafeUser } from "@/app/types";
 import { Reservation } from "@prisma/client";
+import { eachDayOfInterval } from "date-fns";
 import { useRouter } from "next/navigation";
 import { useMemo } from "react";
 
@@ -31,6 +32,21 @@ const ListingClient: React.FC<ListingClientProps> = ({
 }) => {
   const loginModal = useLoginModal();
   const router = useRouter();
+
+  const disableDates = useMemo(() => {
+    let dates: Date[] = [];
+
+    reservation.forEach((reservation) => {
+      const range = eachDayOfInterval({
+        start: new Date(reservation.startDate),
+        end: new Date(reservation.endDate),
+      });
+
+      dates = [...dates, ...range];
+    });
+
+    return dates;
+  }, [reservation]);
 
   const category = useMemo(() => {
     return categories.find((item) => item.label === listing.category);
