@@ -24,6 +24,7 @@ interface ListingClientProps {
 
 const ListingClient: React.FC<ListingClientProps> = ({
   listing,
+  reservation = [],
   currentUser,
 }) => {
   const category = useMemo(() => {
