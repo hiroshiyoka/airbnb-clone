@@ -75,6 +75,8 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
         />
       )}
       <hr />
+      <div className="text-lg font-light text-neutral-500">{description}</div>
+      <hr />
     </div>
   );
 };
