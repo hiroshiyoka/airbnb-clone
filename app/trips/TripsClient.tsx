@@ -1,5 +1,8 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+
 import Container from "../components/Container";
 import Heading from "../components/Heading";
 
@@ -14,6 +17,9 @@ const TripsClient: React.FC<TripsClientProps> = ({
   reservations,
   currentUser,
 }) => {
+  const router = useRouter();
+  const [deletingId, setDeletingId] = useState("");
+
   return (
     <Container>
       <Heading
