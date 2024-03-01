@@ -18,4 +18,15 @@ const TripsPage = async () => {
   const reservation = await getReservation({
     userId: currentUser.id,
   });
+
+  if (reservation.length === 0) {
+    return (
+      <ClientOnly>
+        <EmptyState
+          title="No trips found"
+          subtitle="Looks like you haven't reserved any trips."
+        />
+      </ClientOnly>
+    );
+  }
 };
