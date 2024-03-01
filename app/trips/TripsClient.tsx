@@ -9,6 +9,7 @@ import Heading from "../components/Heading";
 
 import { SafeReservation, SafeUser } from "../types";
 import toast from "react-hot-toast";
+import ListingCard from "../components/listings/ListingCard";
 
 interface TripsClientProps {
   reservations: SafeReservation[];
@@ -60,7 +61,20 @@ const TripsClient: React.FC<TripsClientProps> = ({
             2xl:grid-cols-6
             gap-8
         "
-      ></div>
+      >
+        {reservations.map((reservations) => (
+          <ListingCard
+            key={reservations.id}
+            data={reservations.listing}
+            reservation={reservations}
+            actionId={reservations.id}
+            onAction={onCancel}
+            disabled={deletingId === reservations.id}
+            actionLabel="Cancel reservation"
+            currentUser={currentUser}
+          />
+        ))}
+      </div>
     </Container>
   );
 };
