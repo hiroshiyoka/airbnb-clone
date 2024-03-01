@@ -1,12 +1,14 @@
 "use client";
 
+import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 import Container from "../components/Container";
 import Heading from "../components/Heading";
 
 import { SafeReservation, SafeUser } from "../types";
+import toast from "react-hot-toast";
 
 interface TripsClientProps {
   reservations: SafeReservation[];
@@ -19,6 +21,26 @@ const TripsClient: React.FC<TripsClientProps> = ({
 }) => {
   const router = useRouter();
   const [deletingId, setDeletingId] = useState("");
+
+  const onCancel = useCallback(
+    (id: string) => {
+      setDeletingId(id);
+
+      axios
+        .delete(`/api/reservations/${id}`)
+        .then(() => {
+          toast.success("Reservation cancelled");
+          router.refresh();
+        })
+        .catch((error) => {
+          toast.error(error?.response?.data?.error);
+        })
+        .finally(() => {
+          setDeletingId("");
+        });
+    },
+    [router]
+  );
 
   return (
     <Container>
