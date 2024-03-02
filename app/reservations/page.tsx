@@ -1,5 +1,6 @@
 import EmptyState from "../components/EmptyState";
 import ClientOnly from "../components/ClientOnly";
+import ReservationsClient from "./ReservationsClient";
 
 import getCurrentUser from "../actions/getCurrentUser";
 import getReservation from "../actions/getReservation";
@@ -29,6 +30,15 @@ const ReservationsPage = async () => {
       </ClientOnly>
     );
   }
+
+  return (
+    <ClientOnly>
+      <ReservationsClient
+        reservations={reservations}
+        currentUser={currentUser}
+      />
+    </ClientOnly>
+  );
 };
 
 export default ReservationsPage;
