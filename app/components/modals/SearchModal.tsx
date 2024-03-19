@@ -1,7 +1,9 @@
 "use client";
 
+import qs from "query-string";
+import { formatISO } from "date-fns";
 import { useParams, useRouter } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { Range } from "react-date-range";
 
 import Modal from "./Modal";
@@ -39,6 +41,66 @@ const SearchModal = () => {
       }),
     [location]
   );
+
+  const onBack = useCallback(() => {
+    setStep((value) => value - 1);
+  }, []);
+
+  const onNext = useCallback(() => {
+    setStep((value) => value + 1);
+  }, []);
+
+  const onSubmit = useCallback(async () => {
+    if (step !== STEPS.INFO) {
+      return onNext();
+    }
+
+    let currentQuery = {};
+
+    if (params) {
+      currentQuery = qs.parse(params.toString());
+    }
+
+    const updatedQuery: any = {
+      ...currentQuery,
+      locationValue: location?.value,
+      guestCount,
+      roomCount,
+      bathroomCount,
+    };
+
+    if (dateRange.startDate) {
+      updatedQuery.startDate = formatISO(dateRange.startDate);
+    }
+
+    if (dateRange.endDate) {
+      updatedQuery.endDate = formatISO(dateRange.endDate);
+    }
+
+    const url = qs.stringifyUrl(
+      {
+        url: "/",
+        query: updatedQuery,
+      },
+      { skipNull: true }
+    );
+
+    setStep(STEPS.LOCATION);
+    searchModal.onClose();
+
+    router.push(url);
+  }, [
+    step,
+    searchModal,
+    location,
+    router,
+    guestCount,
+    roomCount,
+    bathroomCount,
+    dateRange,
+    onNext,
+    params,
+  ]);
 
   return (
     <Modal
