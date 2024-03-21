@@ -7,7 +7,8 @@ import { useCallback, useMemo, useState } from "react";
 import { Range } from "react-date-range";
 
 import Modal from "./Modal";
-import { CountrySelectValue } from "../inputs/CountrySelect";
+import Heading from "../Heading";
+import CountrySelect, { CountrySelectValue } from "../inputs/CountrySelect";
 
 import useSearchModal from "@/app/hooks/useSearchModal";
 import dynamic from "next/dynamic";
@@ -118,6 +119,21 @@ const SearchModal = () => {
     return "Back";
   }, [step]);
 
+  let bodyContent = (
+    <div className="flex flex-col gap-8">
+      <Heading
+        title="Where do you wanna go?"
+        subtitle="Find the perfect location!"
+      />
+      <CountrySelect
+        value={location}
+        onChange={(value) => setLocation(value as CountrySelectValue)}
+      />
+      <hr />
+      <Map center={location?.latlng} />
+    </div>
+  );
+
   return (
     <Modal
       isOpen={searchModal.isOpen}
@@ -125,6 +141,7 @@ const SearchModal = () => {
       onSubmit={searchModal.onOpen}
       title="Filters"
       actionLabel="Search"
+      body={bodyContent}
     />
   );
 };
