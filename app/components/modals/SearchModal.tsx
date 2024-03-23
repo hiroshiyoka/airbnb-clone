@@ -8,6 +8,7 @@ import { Range } from "react-date-range";
 
 import Modal from "./Modal";
 import Heading from "../Heading";
+import Calender from "../inputs/Calender";
 import CountrySelect, { CountrySelectValue } from "../inputs/CountrySelect";
 
 import useSearchModal from "@/app/hooks/useSearchModal";
@@ -133,6 +134,21 @@ const SearchModal = () => {
       <Map center={location?.latlng} />
     </div>
   );
+
+  if (step === STEPS.DATE) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="When do you plan to go?"
+          subtitle="Make sure everyone is free!"
+        />
+        <Calender
+          value={dateRange}
+          onChange={(value) => setDateRange(value.selection)}
+        />
+      </div>
+    );
+  }
 
   return (
     <Modal
