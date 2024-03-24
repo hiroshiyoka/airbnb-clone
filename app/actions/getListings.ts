@@ -30,6 +30,32 @@ export default async function getListings(params: IListingParams) {
       query.userId = userId;
     }
 
+    if (category) {
+      query.category = category;
+    }
+
+    if (guestCount) {
+      query.guestCount = {
+        gte: +guestCount,
+      };
+    }
+
+    if (roomCount) {
+      query.roomCount = {
+        gte: +roomCount,
+      };
+    }
+
+    if (bathroomCount) {
+      query.bathroomCount = {
+        gte: +bathroomCount,
+      };
+    }
+
+    if (locationValue) {
+      query.locationValue = locationValue;
+    }
+
     const listings = await prisma.listing.findMany({
       where: query,
       orderBy: {
